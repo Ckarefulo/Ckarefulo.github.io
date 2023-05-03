@@ -1,0 +1,72 @@
+<html>
+<head>
+  <title>Ckarefulo - Dream It Possible</title>
+  <style type="text/css">
+    #lyrics {
+      margin-left: 40px;
+      height: 200px;
+      overflow-y: scroll;
+    }
+    #audio {
+      position: absolute;
+      top: 90%;
+      left: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div id="lyrics" style="height: 90%;">
+      <div style="line-height: 64px; font-weight: bold; font-size: 40px; opacity: 1"></div>
+    </div>
+    <audio id="audio" src="1.mp3" controls="" style="width: 100%; padding-left: -;"></audio>
+  </div>
+
+  <script type="text/javascript">
+    const lyrics = [
+      [0, "· · · · · ·"],
+      [8, "I will run, I will climb, I will soar<br>我将奔跑，我将攀爬，我将飞翔"],
+      [12, "I'm undefeated<br>永不言败</div>"],
+      [16, "Jumping out of my skin, pull the chord<br>脱离身体的桎梏，拉动琴弦"],
+      [20, "Yeah I believe it<br>哦，我相信。"],
+      [22, "The past, is everything we were don’t make us who we are<br>往昔，逝去的光阴不会决定现在"],
+      [30, "So I’ll dream, until I make it real, and all I see is stars<br>所以我们梦想，直到变成真，看到满天星光"],
+      [31, "1"],
+      [32, "2"],
+      [33, "3"],
+      [34, "4"],
+      [35, "5"],
+      [36, "6"],
+      [37, "7"]
+    ];
+
+    const audio = document.getElementById("audio");
+    const lyricsDiv = document.getElementById("lyrics");
+
+    audio.addEventListener("timeupdate", () => {
+      for (let i = 0; i < lyrics.length; i++) {
+        if (
+          audio.currentTime > lyrics[i][0] &&
+          (i === lyrics.length - 1 || audio.currentTime < lyrics[i + 1][0])
+        ) {
+          lyricsDiv.innerHTML = "";
+          for (let j = Math.max(0, i - 2); j < lyrics.length; j++) {
+            const [timestamp, text] = lyrics[j];
+            const isCurrentLine = j === i;
+            const html = `<div style="line-height: ${
+              isCurrentLine ? "64px" : "48px"
+            }; font-weight: ${isCurrentLine ? "bold" : "normal"}; font-size: ${
+              isCurrentLine ? "40px" : "32px"
+            }; opacity: ${isCurrentLine ? "1" : "0.5"}">${text}</div>`;
+            lyricsDiv.innerHTML += html;
+          }
+          break;
+        }
+      }
+    });
+
+    audio.play();
+  </script>
+</body>
+</html>
