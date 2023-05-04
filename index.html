@@ -77,9 +77,9 @@
             const [timestamp, text] = lyrics[j];
             const isCurrentLine = j === i;
             const html = `<div style="line-height: ${
-              isCurrentLine ? "64px" : "48px"
+              isCurrentLine ? "48px" : "36px"
             }; font-weight: ${isCurrentLine ? "bold" : "normal"}; font-size: ${
-              isCurrentLine ? "40px" : "32px"
+              isCurrentLine ? "30px" : "24px"
             }; opacity: ${isCurrentLine ? "1" : "0.5"}">${text}</div>`;
             lyricsDiv.innerHTML += html;
           }
